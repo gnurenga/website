@@ -5,7 +5,7 @@ branches:
   - master
 
 install:
- - pip install pelican ghp-import
+ - pip install pelican ghp-import Markdown fabric
 
 script:
  - make publish github
