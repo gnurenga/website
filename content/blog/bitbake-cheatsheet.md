@@ -6,4 +6,4 @@ Tags: Blog
 Yocto is an opensource embedded linux build system
 
 ## Bitbake
-To be Fixed
+Bitbake is tool written in python, used in Yocoto build system.
