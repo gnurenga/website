@@ -3,12 +3,11 @@ branches:
   only:
   - master
 install:
-- pip install pelican ghp-import
+ - pip install pelican ghp-import
 script:
-- make publish github
+ - make publish github
 env:
   global:
     secure: eMTSqDZtmSsQZhTrIPEg13yD4Vu4LlGSAclcA+cQuLHd1CtBb+DunLzmDSdFwSA3qcCumzii5GBDpeueJqOfLcDuqW/A5LefgQGtwbMpWYdm6Hh2ZevLr6CFNl5m7Nru10yJviBiFGQ8YK6x8vY8QbEmR/LEt+VIy/iAXJ1iiBY=
 after_sucess:
-- ghp-import output
-- git push git push git@github.com:gnurenga/gnurenga.github.io.git gh-pages:master
+ - bash deploy.sh
