@@ -26,7 +26,7 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('https://twitter.com/sakthirengaraj', '#'),
+SOCIAL = (('Twitter', 'https://twitter.com/sakthirengaraj'),
           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = False
