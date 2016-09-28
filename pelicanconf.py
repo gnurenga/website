@@ -27,7 +27,8 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 
 # Social widget
 SOCIAL = (('@sakthirengaraj', 'https://twitter.com/sakthirengaraj'),
-          ('Linkedin', 'https://in.linkedin.com/in/rengaraj-d-1b804a16'),)
+          ('Linkedin', 'https://in.linkedin.com/in/rengaraj-d-1b804a16'),
+           ('GitHub', 'https://github.com/gnurenga'),)
 
 DEFAULT_PAGINATION = False
 
