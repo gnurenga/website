@@ -27,7 +27,7 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 
 # Social widget
 SOCIAL = (('@sakthirengaraj', 'https://twitter.com/sakthirengaraj'),
-          ('Another social link', '#'),)
+          ('Linkedin', 'https://in.linkedin.com/in/rengaraj-d-1b804a16'),)
 
 DEFAULT_PAGINATION = False
 
