@@ -5,9 +5,7 @@ Tags: Blog, Python, Robotframework
 ## Overview
 
 Testing is a part of product life cycle. I wonder is there any tool or programing language which will be fun to work with except python. Since python is
-grown in such a way that even a non programmer become a programmer. In case of testing team, traditionaly there is a image that they won't code. But pythfills the gap between coding and testing.
-
-Robotframe work is one such a tool, widely used in integration testing in Embedded systems.
+grown in such a way that even a non programmer become a programmer. In case of testing team, traditionaly there is a image that they won't code. But python fills the gap between coding and testing.
 
 Still many people doesn't know the power of Python and Robotframe work in testing field.
 
