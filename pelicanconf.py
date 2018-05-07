@@ -39,4 +39,5 @@ PLUGINS = ['asciidoc_reader']
 
 ASCIIDOC_CMD = 'asciidoc'
 
+ASCIIDOC_OPTIONS = ["-a source-highlighter=pygments","-a lang=en"]
 #SUMMARY_USE_FIRST_PARAGRAPH = True
