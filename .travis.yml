@@ -11,6 +11,6 @@ script:
 - make publish github
 env:
   global:
-    secure: LAhuzlb+K95W5ret4rmHUiYVArrMIwNEmAx+11EdslDt/mYrL4fwvLtSZBG9owHk8BiAVTxAh4vROR+GtJjnTAec67cQHLn8qWTBZLmLavvMk2hjPLX+sdVWfIjUavXnbHndt11k+gZC42cJf8hkHxMWrIhiiBy0SzW9W3l4e9s=
+    secure: f+nIBasRfR9Y0nyoWI8krzF1Cm3JosbOw4V420hmB4wDEDAFfNbJNq8eqM2rylgYTOUunz1/+sC9MMJKxQaE4S4egH1wkkH3jAGMHVKcS08GK83KUxpYxPrFe2/1/rWsiAK+4GUmBl9iLI3+gABJeeRIwgwnFkeZHl9Ww3i6fjs=
 after_success:
 - bash deploy.sh
