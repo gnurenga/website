@@ -10,8 +10,7 @@ install:
 script:
 - make publish github
 env:
-  global: 
-  matrix:
+  global:
     secure: LAhuzlb+K95W5ret4rmHUiYVArrMIwNEmAx+11EdslDt/mYrL4fwvLtSZBG9owHk8BiAVTxAh4vROR+GtJjnTAec67cQHLn8qWTBZLmLavvMk2hjPLX+sdVWfIjUavXnbHndt11k+gZC42cJf8hkHxMWrIhiiBy0SzW9W3l4e9s=
 after_success:
 - bash deploy.sh
