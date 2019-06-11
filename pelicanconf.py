@@ -34,10 +34,10 @@ DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
-PLUGIN_PATHS=['./pelican-plugins']
+PLUGIN_PATHS=['./plugin']
 PLUGINS = ['asciidoc_reader']
 
 ASCIIDOC_CMD = 'asciidoc'
 
 ASCIIDOC_OPTIONS = ["-a source-highlighter=pygments","-a lang=en", "-a data-uri", "-a icons"]
-#SUMMARY_USE_FIRST_PARAGRAPH = True
+SUMMARY_USE_FIRST_PARAGRAPH = False
