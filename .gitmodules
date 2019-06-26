@@ -2,3 +2,6 @@
 [submodule "pelican-plugins"]
 	path = pelican-plugins
 	url = https://github.com/getpelican/pelican-plugins.git
+[submodule "theme"]
+	path = theme
+	url = https://github.com/PurePelicanTheme/pure-single
