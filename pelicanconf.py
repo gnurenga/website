@@ -5,10 +5,12 @@ from __future__ import unicode_literals
 AUTHOR = u'rengaraj'
 SITENAME = u'rengaraj'
 SITEURL = ''
+FAVICON_URL = 'https://www.python.org/static/favicon.ico'
 
 PATH = 'content'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Asia/Kolkata'
+
 
 DEFAULT_LANG = u'en'
 
@@ -26,9 +28,9 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('@sakthirengaraj', 'https://twitter.com/sakthirengaraj'),
-          ('Linkedin', 'https://in.linkedin.com/in/rengaraj-d-1b804a16'),
-           ('GitHub', 'https://github.com/gnurenga'),)
+SOCIAL = (('twitter', 'https://twitter.com/sakthirengaraj'),
+          ('linkedin', 'https://in.linkedin.com/in/rengaraj-d-1b804a16'),
+           ('github', 'https://github.com/gnurenga'),)
 
 DEFAULT_PAGINATION = False
 
@@ -41,3 +43,12 @@ ASCIIDOC_CMD = 'asciidoc'
 
 ASCIIDOC_OPTIONS = ["-a source-highlighter=pygments","-a lang=en", "-a data-uri", "-a icons"]
 SUMMARY_USE_FIRST_PARAGRAPH = False
+
+THEME = "theme"
+MENUITEMS = [
+    ("Blog", "tag/blog.html")
+    
+]
+
+SLUGIFY_SOURCE = "basename"
+CUSTOM_CSS = "static/css/custom.css"
