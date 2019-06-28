@@ -8,7 +8,7 @@ install:
 - pip install -r requirements.txt
 - sudo apt-get install -y asciidoc
 script:
-- make publish github
+- make publish 
 env:
   global:
     secure: Oqbykc0IQRfynEHVmGo+ktr8Plyc25eu+wvqYH5L001hQizFgZOxmkdmzzNh4IHu8J/vaCNqG/reJp901ATIlU5ALlTUyy6R/3XqedZO3/wR0esCPXrnvIj6JAmmoYKEAI+Gqpu2cfI6bP+o/54w4sdCMcD07DBPRlVOD+LSy3g=
