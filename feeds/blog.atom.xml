@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>rengaraj - blog</title><link href="/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2019-06-12T12:12:00+05:30</updated><entry><title>Embedded System Testing Using Robot Frame work</title><link href="/robot-frameowrk.html" rel="alternate"></link><updated>2019-06-12T12:12:00+05:30</updated><author><name>Rengaraj</name></author><id>tag:None,2019-06-12:/robot-frameowrk.html/</id><summary type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_overview"&gt;Overview&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;&lt;p&gt;Testing is a part of product life cycle. I wonder is there any tool or
+programing language which will be fun to work with except
+python. Since python is grown in such a way that even a non programmer
+become a programmer. In case of testing team, traditionaly there …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><category term="Blog"></category><category term="Python"></category><category term="Robotframework"></category></entry><entry><title>Yocoto Bitbake Cheat Sheet</title><link href="/bitbake-cheatsheet.html" rel="alternate"></link><updated>2016-04-27T11:02:00+05:30</updated><author><name>rengaraj</name></author><id>tag:None,2016-04-27:/bitbake-cheatsheet.html/</id><summary type="html">&lt;h2&gt;About Yocto&lt;/h2&gt;
+&lt;p&gt;Yocto is an opensource embedded linux build system.
+We can maintain software packages as layers in Yocto.
+Yocto almost support all opensource build tools, download sources from
+various version control repositories and ftps sites.
+Yocto supports different packages used in linux distributions like deb,rpm,ipk,cpio.&lt;/p&gt;
+&lt;h2&gt;Bitbake …&lt;/h2&gt;</summary><category term="Blog"></category></entry></feed>

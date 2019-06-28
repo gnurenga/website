@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="rengaraj, ">
+
+        <link rel="alternate"  href="/feeds/all.atom.xml" type="application/atom+xml" title="rengaraj Full Atom Feed"/>
+
+        <title>Embedded System Testing Using Robot Frame work // rengaraj // </title>
+
+    <link href="https://www.python.org/static/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background: none repeat scroll 0% 0% #3D4F5D">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <h1 class="brand-main"><a href="">rengaraj</a></h1>
+                            <p class="tagline"></p>
+                                <p class="links"><a href="tag/blog.html">Blog</a></p>
+                                <p class="social">
+                                    <a href="https://twitter.com/sakthirengaraj">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="https://in.linkedin.com/in/rengaraj-d-1b804a16">
+                                        <i class="fa fa-linkedin fa-3x"></i>
+                                    </a>
+                                    <a href="https://github.com/gnurenga">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Embedded System Testing Using Robot Frame work</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="/tag/blog.html">Blog</a>
+                                <a class="post-category" href="/tag/python.html">Python</a>
+                                <a class="post-category" href="/tag/robotframework.html">Robotframework</a>
+                        </p>
+                </header>
+            </section>
+            <div class="sect1">
+<h2 id="_overview">Overview</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Testing is a part of product life cycle. I wonder is there any tool or
+programing language which will be fun to work with except
+python. Since python is grown in such a way that even a non programmer
+become a programmer. In case of testing team, traditionaly there is a
+image that they won&#8217;t code. But python fills the gap between coding
+and testing.</p></div>
+<div class="paragraph"><p>Still many people doesn&#8217;t know the power of Python and Robotframe work
+in testing field.</p></div>
+<div class="paragraph"><p>The main objective of this article is to give an Example of an
+Embedded system and how that can be tested using python and robotframe
+work.</p></div>
+<div class="paragraph"><p>Actually I am rewriting this article which I posted in stack overflow
+documentation (How robot framework is used in Automation testing in
+Embedded Systems?). Since documentation beta is closed by Stack
+Overflow.</p></div>
+<div class="paragraph"><p>I am writing this article because I like to make testing team to have
+a taste of coding.</p></div>
+<div style="page-break-after:always"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requirements_to_build_the_rps">Requirements to build the RPS</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Requirements for building a remote power supply are</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>Remote power supply should be able to turn ON/OFF remotely
+Remote power supply status can be accessed remotely.</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_remote_power_supply_simulation">Remote Power supply simulation</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Since we don&#8217;t have a real remote power supply hardware, we are going
+to simulate it using python program.</p></div>
+<div class="sect2">
+<h3 id="_basic_idea_about_rps">Basic idea about RPS</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Actually remote power supply has a http server.
+</p>
+</li>
+<li>
+<p>
+User can send commands to turn ON/OFF power supply using http request.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>We are going to simulate remote power supply using following program
+rps-server.py.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">flask_httpauth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">()</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;admin&#39;</span><span class="p">:</span> <span class="s">&#39;12345678&#39;</span>
+<span class="p">}</span>
+<span class="n">app</span><span class="o">.</span><span class="n">url_map</span><span class="o">.</span><span class="n">strict_slashes</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">PINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;P60&#39;</span><span class="p">,</span> <span class="s">&#39;P61&#39;</span><span class="p">,</span> <span class="s">&#39;P62&#39;</span><span class="p">,</span> <span class="s">&#39;P63&#39;</span><span class="p">]</span>
+
+<span class="n">PINS_STATUS</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;P60&#39;</span><span class="p">:</span><span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="s">&#39;P61&#39;</span><span class="p">:</span> <span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="s">&#39;P62&#39;</span><span class="p">:</span><span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="s">&#39;P63&#39;</span><span class="p">:</span><span class="s">&#39;0&#39;</span><span class="p">}</span>
+
+<span class="nd">@auth.get_password</span>
+<span class="k">def</span> <span class="nf">get_pw</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">username</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+<span class="nd">@auth.login_required</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s">&quot;Hello, </span><span class="si">%s</span><span class="s">!&quot;</span> <span class="o">%</span> <span class="n">auth</span><span class="o">.</span><span class="n">username</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_html_string</span><span class="p">():</span>
+        <span class="n">html_str</span> <span class="o">=</span> <span class="s">&#39;&lt;html&gt;P60={}P61={}P62={}P63={}&lt;/html&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">PINS_STATUS</span><span class="p">[</span><span class="s">&#39;P60&#39;</span><span class="p">],</span>
+                                                <span class="n">PINS_STATUS</span><span class="p">[</span><span class="s">&#39;P61&#39;</span><span class="p">],</span>
+                                                <span class="n">PINS_STATUS</span><span class="p">[</span><span class="s">&#39;P62&#39;</span><span class="p">],</span>
+                                                <span class="n">PINS_STATUS</span><span class="p">[</span><span class="s">&#39;P63&#39;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">html_str</span>
+
+<span class="k">def</span> <span class="nf">parse_cmd_args</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">current_status</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;CMD&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="s">&#39;SetPower&#39;</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">PINS</span><span class="p">:</span>
+                                <span class="n">PINS_STATUS</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+                <span class="k">return</span> <span class="n">get_html_string</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;CMD&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="s">&#39;GetPower&#39;</span><span class="p">:</span>
+               <span class="k">return</span> <span class="n">get_html_string</span><span class="p">()</span>
+
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/SetCmd&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;GET&#39;</span><span class="p">,</span><span class="s">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">rps</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="o">==</span><span class="s">&quot;GET&quot;</span><span class="p">:</span>
+                <span class="n">args</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="n">parse_cmd_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">ret</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_run_rps_server">How to run rps server ?</h3>
+<div class="listingblock">
+<div class="content">
+<pre><code>$ export FLASK_APP=rps-server.py
+$ flask run</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_send_commands_to_rps_server">How to send commands to rps server ?</h3>
+<div class="paragraph"><p>Following are the two commands used to control the RPS</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>    1. SetPower
+    2. GetPower</code></pre>
+</div></div>
+<div class="paragraph"><p>By default the server will be listening at the port 5000.</p></div>
+<div class="paragraph"><p>The power supply ports are,</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>    P60
+    P61
+    P62
+    P64</code></pre>
+</div></div>
+<div class="paragraph"><p>The states of the ports are,</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>    ON - 1
+    OFF - 0</code></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deriving_test_cases">Deriving test cases</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Now the RPS server is ready for simulation.
+We need to write test case to test RPS system.</p></div>
+<div class="sect2">
+<h3 id="_test_cases_derived_from_requirement">Test cases derived from requirement</h3>
+<div class="literalblock">
+<div class="content">
+<pre><code>Turn on Power supply 2 remotely.
+Verify power supply 2 is on.
+Turn off Power supply 2 remotely.
+Verify power supply 2 is off.</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_manual_testing">Manual Testing</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Run the rps server.
+</p>
+</li>
+<li>
+<p>
+To turn on Port 3, open a browser and give following URI
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>http://admin:12345678@localhost:5000/SetCmd?CMD=SetPower&amp;P62=1</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+To get the status of all the ports
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>http://admin:12345678@localhost:5000/SetCmd?CMD=GetPower</code></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_writing_test_library">Writing test library</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>We need to write a test library in python for sending http commands
+using http request. Later we will be using this library as keywords in
+robot frame work.</p></div>
+<div class="paragraph"><p>We are going to use library from commands.py to send SetPower and GetPower.</p></div>
+<div class="sect3">
+<h4 id="_source_code_commands_py">Source code commands.py</h4>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="c">#http://admin:12345678@192.168.1.100/Set.cmd?CMD=SetPower&amp;P60=1&amp;P61=1&amp;P62=1&amp;P63=0</span>
+
+
+<span class="k">class</span> <span class="nc">commands</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="n">ROBOT_LIBRARY_SCOPE</span> <span class="o">=</span> <span class="s">&#39;GLOBAL&#39;</span>                 <span class="c"># <img alt="1" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="s">&#39;localhost:5000&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span> <span class="o">=</span> <span class="n">ip</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="s">&#39;admin&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passw</span> <span class="o">=</span> <span class="s">&#39;12345678&#39;</span>
+
+    <span class="k">def</span> <span class="nf">form_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+        <span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_port_no</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="n">port</span><span class="p">:</span> <span class="n">state</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span>
+
+    <span class="k">def</span> <span class="nf">get_port_no</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_no</span><span class="p">):</span>
+        <span class="n">port</span> <span class="o">=</span> <span class="s">&#39;P6&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">port_no</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">port</span>
+
+    <span class="k">def</span> <span class="nf">clean_html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">exp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;&lt;.*?&gt;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">send_cmds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span> <span class="c"># <img alt="2" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABvSURBVAgd
+BcGhAcJADADAky8rsZXIyK7AGkgksiu8RNYyAiswAhIbiYwMd7rrsS3LdlS3zuC8EtkqrJ/8vRdR
+Js+PtSZTMHe+L8IAUXeGAZd8DYbArB3C5FbXiBNThSMzcxelM4DI1l0zxtge1f0HVNk1YLFij6sA
+AABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlz
+dGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1MjljOTRhN2Y0N2Rl
+Y2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://{}:{}@{}/SetCmd?CMD={}&#39;</span>\
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+                      <span class="bp">self</span><span class="o">.</span><span class="n">passw</span><span class="p">,</span>
+                      <span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span>
+                      <span class="n">cmd</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">url</span>
+        <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">&#39;SetPower&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">form_query</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">&#39;GetPower&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clean_html</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">text</span>
+
+
+<span class="c"># c = commands(&#39;localhost:5000&#39;)</span>
+
+<span class="c"># c.send_cmds(&#39;SetPower&#39;, 2, 1)</span>
+<span class="c"># c.send_cmds(&#39;SetPower&#39;, 3, 1)</span>
+<span class="c"># print c.send_cmds(&#39;GetPower&#39;)</span>
+</pre></div></div></div>
+<div class="colist arabic"><table>
+<tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+The scope of the variable will available through all test case
+</td></tr>
+<tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABvSURBVAgd
+BcGhAcJADADAky8rsZXIyK7AGkgksiu8RNYyAiswAhIbiYwMd7rrsS3LdlS3zuC8EtkqrJ/8vRdR
+Js+PtSZTMHe+L8IAUXeGAZd8DYbArB3C5FbXiBNThSMzcxelM4DI1l0zxtge1f0HVNk1YLFij6sA
+AABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlz
+dGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1MjljOTRhN2Y0N2Rl
+Y2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+Send Cmds is the key word we are going to use.
+</td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_python_keyword_documentation_for_send_cmds">Python Keyword documentation for send_cmds</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>send_cmds(cmd, port=None, state=None)</code> is the function we are going to use.
+</p>
+</li>
+<li>
+<p>
+While using this function in Robot key word, no need to bother about <code>_</code>, or <code>Lowercaser</code> or <code>Uppercase</code> in function name.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Robot keyword derived from python function</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Send Cmds       cmd   port  state</code></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_writing_robot_keyword_using_python_library">Writing Robot keyword using Python Library</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>We are going to use <code>Send Cmds</code> as python keyword in test suite.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+RPS send commands uses following three arguments to set power
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+command = SetPower
+</p>
+</li>
+<li>
+<p>
+port = 2
+</p>
+</li>
+<li>
+<p>
+state = 1 for ON / 0 for off When we call that command it will turn ON/OFF the power supply
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>*** Keywords ***
+RPS send commands
+    [Arguments]    ${command}    ${port}    ${state}
+    ${output}=    Send cmds    ${command}  ${port}  ${state}
+    [return]    ${output}
+
+RPS get Power
+    [Arguments]    ${command}
+    ${output}=    Send cmds    ${command}
+    [return]    ${output}}</code></pre>
+</div></div>
+<div class="sect2">
+<h3 id="_algorithm_to_test_power_supply">Algorithm to test power supply</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Set power to a port
+</p>
+</li>
+<li>
+<p>
+Check the status of cmd
+</p>
+</li>
+<li>
+<p>
+Get the status of the port and check whether it is ON/OFF
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_writing_test_suite_using_test_case_we_derived">Writing Test Suite using test case we derived</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Now we are ready to write test suite using following two keywords</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+RPS send commands - To set and unset a power of port
+</p>
+</li>
+<li>
+<p>
+RPS get power - To get the status of all the port
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>*** Settings ***
+Library      ../library/commands.py  # Import the library
+
+*** Test Cases ***
+Turn on Power supply 2 remotely
+     ${out}=    RPS send commands     SetPower  2  1
+     Should be equal    ${out}  ${True}
+
+Verify power supply 2 is on
+    ${out}=     RPS get power    GetPower
+    should contain    ${out}  P62=1
+
+Turn off Power supply 2 remotely
+     ${out}=    RPS send commands     SetPower  2  0
+     Should be equal    ${out}  ${True}
+
+Verify power supply 2 is off
+    ${out}=     RPS get power    GetPower
+    should contain    ${out}  P62=0
+
+*** Keywords ***
+RPS send commands
+    [Arguments]    ${command}    ${port}    ${state}
+    ${output}=    Send cmds    ${command}  ${port}  ${state}
+    [return]    ${output}
+
+RPS get Power
+    [Arguments]    ${command}
+    ${output}=    Send cmds    ${command}
+    [return]    ${output}}</code></pre>
+</div></div>
+<div class="paragraph"><p>Note: A keywords can be put as seprate a file and import in test suite</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_credits">Credits</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+I like to thank <a href="http://www.vvdntech.com/">VVDN Technologies PVT Ltd</a>for providing me the VVDN labs to
+explore on RPS.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+
+            <a href="#" class="go-top">Go Top</a>
+<footer class="footer">
+    <p>&copy; rengaraj &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+</body>
+</html>

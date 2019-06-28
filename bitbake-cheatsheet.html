@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="rengaraj, ">
+
+        <link rel="alternate"  href="/feeds/all.atom.xml" type="application/atom+xml" title="rengaraj Full Atom Feed"/>
+
+        <title>Yocoto Bitbake Cheat Sheet // rengaraj // </title>
+
+    <link href="https://www.python.org/static/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background: none repeat scroll 0% 0% #3D4F5D">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <h1 class="brand-main"><a href="">rengaraj</a></h1>
+                            <p class="tagline"></p>
+                                <p class="links"><a href="tag/blog.html">Blog</a></p>
+                                <p class="social">
+                                    <a href="https://twitter.com/sakthirengaraj">
+                                        <i class="fa fa-twitter fa-3x"></i>
+                                    </a>
+                                    <a href="https://in.linkedin.com/in/rengaraj-d-1b804a16">
+                                        <i class="fa fa-linkedin fa-3x"></i>
+                                    </a>
+                                    <a href="https://github.com/gnurenga">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Yocoto Bitbake Cheat Sheet</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="/tag/blog.html">Blog</a>
+                        </p>
+                </header>
+            </section>
+            <h2>About Yocto</h2>
+<p>Yocto is an opensource embedded linux build system.
+We can maintain software packages as layers in Yocto.
+Yocto almost support all opensource build tools, download sources from
+various version control repositories and ftps sites.
+Yocto supports different packages used in linux distributions like deb,rpm,ipk,cpio.</p>
+<h2>Bitbake</h2>
+<p>Bitbake is tool written in python, used in Yocoto build system.
+Using bitbake we can build a custom Embedded Linux distro.
+This article gives you some of the useful command we execised during
+our project.</p>
+<h2>The bitbake Useful commands</h2>
+<h3>Cleaning a build</h3>
+<div class="highlight"><pre><span class="n">bitbake</span> <span class="o">-</span><span class="n">c</span> <span class="o">&lt;</span><span class="n">package</span><span class="o">-</span><span class="n">name</span> <span class="n">or</span> <span class="n">recipe</span> <span class="n">name</span><span class="o">&gt;</span>
+<span class="n">bitbake</span> <span class="o">-</span><span class="n">c</span> <span class="n">cleansstate</span> <span class="n">core</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">sato</span>
+</pre></div>
+
+
+<h3>Dependency explorer</h3>
+<div class="highlight"><pre><span class="n">bitbake</span> <span class="o">-</span><span class="n">g</span> <span class="o">&lt;</span><span class="n">core</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">sato</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">u</span> <span class="n">depexp</span>
+</pre></div>
+            <a href="#" class="go-top">Go Top</a>
+<footer class="footer">
+    <p>&copy; rengaraj &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+</body>
+</html>
