@@ -8,9 +8,9 @@ install:
 - pip install -r requirements.txt
 - sudo apt-get install -y asciidoc
 script:
-- make publish 
+- make publish
 env:
   global:
-    secure: Oqbykc0IQRfynEHVmGo+ktr8Plyc25eu+wvqYH5L001hQizFgZOxmkdmzzNh4IHu8J/vaCNqG/reJp901ATIlU5ALlTUyy6R/3XqedZO3/wR0esCPXrnvIj6JAmmoYKEAI+Gqpu2cfI6bP+o/54w4sdCMcD07DBPRlVOD+LSy3g=
+  - secure: eocdNO7aJuA8mol+oFfn2EVckqIuWLTecCEm3l63C4FkscjlA8S4jlwTcez9shm9sJN1nkkMWTDO44wygMwdeTFK9QWmdF86j4lLUGBqOLCay2Q+Up4C6RRsq4Z0TmboAxjapszhn8Kc5psPTWShMPsodS4paZO2SoV5M7zuvPY=
 after_success:
 - bash deploy.sh
