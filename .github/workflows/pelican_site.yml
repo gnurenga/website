@@ -13,7 +13,7 @@ on:
         type: boolean
 jobs:
   deploy:
-    uses: "website/.github/workflows/pelican_site.yml@main"
+    uses: "gnurenga/website/.github/workflows/pelican_site.yml@main"
     permissions:
       id-token: write
       contents: read
