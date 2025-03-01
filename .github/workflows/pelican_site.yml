@@ -1,9 +1,9 @@
 name: Build and Deploy Site
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
   pull_request:
-    branches: ["main"]
+    branches: ["master"]
   workflow_dispatch:
     inputs:
       deploy:
@@ -13,7 +13,7 @@ on:
         type: boolean
 jobs:
   deploy:
-    uses: "gnurenga/website/.github/workflows/pelican_site.yml@main"
+    uses: "gnurenga/website/.github/workflows/pelican_site.yml@master"
     permissions:
       id-token: write
       contents: read
