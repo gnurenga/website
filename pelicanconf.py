@@ -44,7 +44,9 @@ ASCIIDOC_OPTIONS = ["-a source-highlighter=pygments","-a lang=en", "-a data-uri"
 SUMMARY_USE_FIRST_PARAGRAPH = False
 
 THEME = "theme"
-PROFILE_IMAGE_URL = 'https://gravatar.com/sakthirengaraj'
+PROFILE_IMG_URL = 'https://0.gravatar.com/avatar/53610a1b6acb64452101e74d9702feede72a018da1d02e5ae84ec4a8db627038?size=256'
+
+STATIC_PATHS = ["static"]
 
 MENUITEMS = [
     ("Blog", "tag/blog.html")
@@ -53,3 +55,4 @@ MENUITEMS = [
 
 SLUGIFY_SOURCE = "basename"
 CUSTOM_CSS = "static/css/custom.css"
+
