@@ -4,4 +4,4 @@
 	url = https://github.com/getpelican/pelican-plugins.git
 [submodule "theme"]
 	path = theme
-	url = https://github.com/PurePelicanTheme/pure-single
+	url = https://github.com/dkua/pure-single.git
