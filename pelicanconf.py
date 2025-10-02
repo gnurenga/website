@@ -6,7 +6,7 @@ AUTHOR = u'rengaraj'
 SITENAME = u'rengaraj'
 SITEURL = ''
 FAVICON_URL = 'https://www.python.org/static/favicon.ico'
-
+PROFILE_IMAGE_URL = 'https://gravatar.com/sakthirengaraj'
 PATH = 'content'
 
 TIMEZONE = 'Asia/Kolkata'
