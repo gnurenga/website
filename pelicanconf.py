@@ -6,7 +6,6 @@ AUTHOR = u'rengaraj'
 SITENAME = u'rengaraj'
 SITEURL = ''
 FAVICON_URL = 'https://www.python.org/static/favicon.ico'
-PROFILE_IMAGE_URL = 'https://gravatar.com/sakthirengaraj'
 PATH = 'content'
 
 TIMEZONE = 'Asia/Kolkata'
@@ -45,6 +44,8 @@ ASCIIDOC_OPTIONS = ["-a source-highlighter=pygments","-a lang=en", "-a data-uri"
 SUMMARY_USE_FIRST_PARAGRAPH = False
 
 THEME = "theme"
+PROFILE_IMAGE_URL = 'https://gravatar.com/sakthirengaraj'
+
 MENUITEMS = [
     ("Blog", "tag/blog.html")
     
