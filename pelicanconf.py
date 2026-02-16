@@ -49,8 +49,8 @@ PROFILE_IMG_URL = 'https://0.gravatar.com/avatar/53610a1b6acb64452101e74d9702fee
 STATIC_PATHS = ["static"]
 
 MENUITEMS = [
-    ("Blog", "tag/blog.html")
-    
+    ("Blog", "tag/blog.html"),
+    ("Portfolio", "portfolio/index.html")
 ]
 
 SLUGIFY_SOURCE = "basename"
