@@ -41,7 +41,10 @@ $ export PATH=$PATH:/usr/local/go/bin
 6. But it will be available only to the current shell session. That means after you close and reopen a terminal 
 the environment will be loss-ed. We have to make it permanent by adding the above value to `$HOME/.profile`.
 Then run,
-
+ 
 ~~~~
 $ source $HOME/.profile
 ~~~~
+
+From next login `go` will be avaialable systemwide. You can also add the command in step 5 in `.bashrc`.
+
