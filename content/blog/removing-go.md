@@ -1,6 +1,6 @@
 Title: Uninstalling go from Debian
-Date:2026-03-22 7:12 PM
-Tags:Debian, go-lang
+Date: 2026-03-22 7:12 PM
+Tags: Blog, Debian, go-lang
 
 ## Uninstalling go from the GNU/Linux system
 

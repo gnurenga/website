@@ -1,6 +1,6 @@
-Title:Installing new go version
+Title: Installing new go version
 Date: 2026-03-22 7:26 PM
-Tags: go, Installation 
+Tags: Blog, go, Installation 
 
 ## Installing go
 
