@@ -1,8 +1,8 @@
 Title: Term Insurance
-:Author: Rengaraj
-:Date: 2019-06-12 12:12
-:Tags: Blog, Insurance
-:status: draft
+Author: Rengaraj
+Date: 2019-06-12 12:12
+Tags: Blog, Insurance
+status: draft
 
 
 ## What will be covered in this document ?
