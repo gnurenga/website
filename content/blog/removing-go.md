@@ -12,7 +12,7 @@ $ which go
 /usr/bin/go
 ~~~~
 
-2. We also need to know the linked libraries for go. Though bilow is a softlink to go binary. It gives where the libraries present.
+2. We also need to know the linked libraries for go. Though below is a soft link to go binary. It gives where the libraries present.
 
 ~~~~
 $ file /usr/bin/go

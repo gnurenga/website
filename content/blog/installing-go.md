@@ -4,7 +4,7 @@ Tags: Blog, go, Installation
 
 ## Installing go
 
-In the previous artive we removed GO from GNU/Linux Debian Distribution.
+In the previous article we removed GO from GNU/Linux Debian Distribution.
 In this article we are going to see how we can Install new go version
 
 1. The official document give below command. But that is not working in my system.
@@ -46,5 +46,5 @@ Then run,
 $ source $HOME/.profile
 ~~~~
 
-From next login `go` will be avaialable systemwide. You can also add the command in step 5 in `.bashrc`.
+From next login `go` will be available system wide. You can also add the command in step 5 in `.bashrc`.
 
